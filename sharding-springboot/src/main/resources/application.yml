@@ -1,0 +1,53 @@
+server:
+  port: 8080
+spring:
+  shardingsphere:
+    datasource:
+      names: master,slave0,slave1
+      #主库
+      master:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3307/test?useSSL=false&serverTimezone=CTT
+        username: root
+        password: root
+
+      #从库 slave0
+      slave0:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3308/test?useSSL=false&serverTimezone=CTT
+        username: root
+        password: root
+
+      #从库 slave1
+      slave1:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3309/test?useSSL=false&serverTimezone=CTT
+        username: root
+        password: root
+
+    masterslave:
+      name: ms
+      master-data-source-name: master
+      slave-data-source-names: slave0,slave1
+      load-balance-algorithm-type: RANDOM # 设置负载均衡配置 round_robin 轮询默认配置 RANDOM 随机分配
+    props:
+      sql:
+        show: true
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapping/**/*Mapper.xml
+  typeAliasesPackage: cn.toma.model
+#通用Mybatis配置
+mapper:
+  mappers:
+    - cn.toma.core.Mapper
+  not-empty: false
+  identity: MYSQL
+
+
+# sharding-jdbc 不支持的功能 https://shardingsphere.apache.org/document/current/cn/manual/sharding-jdbc/unsupported-items/
