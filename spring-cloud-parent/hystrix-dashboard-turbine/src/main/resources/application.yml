@@ -1,0 +1,19 @@
+server:
+  port: 7000
+spring:
+  application:
+    name: hystrix-dashboard-turbine
+  main:
+    allow-bean-definition-overriding: true
+turbine:
+#  instanceUrlSuffix:
+#    default: hystrix.stream
+  app-config: spring-cloud-consumer,node01
+  cluster-name-expression: new String('default')
+  aggregator:
+    cluster-config: default
+#  combine-host-port: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka/

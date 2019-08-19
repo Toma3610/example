@@ -1,0 +1,18 @@
+server:
+  port: 9002
+spring:
+  profiles:
+    active: prod
+  application:
+    name: alibaba-nacos-config-client
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        namespace: f45b4251-5a76-4a60-bd0c-a5dcccc59de3 # nacos 通过命名空间的方式来区分不同配置 public beta prod
+
+#        shared-dataids: # 配置多个共享配置的 dataID 例如： alibaba-nacos-config-client.properties
+#        refreshable-dataids: # 那些共享配置的dataID 需要动态的刷新
+#        prefix: alibaba-nacos-config-client #配置的应用名称 DataID
+#        file-extension: .properties # nacos 配置文件的后缀
+#        group: DEFAULT_GROUP   # 组织名称

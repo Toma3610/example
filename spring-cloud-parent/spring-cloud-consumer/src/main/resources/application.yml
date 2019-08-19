@@ -1,0 +1,20 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: spring-cloud-consumer
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka/
+
+feign:
+  hystrix:
+    enabled: true
+  client:
+    config: # 配置feign 请求的日志
+      spring-cloud-producer:
+        loggerLevel: full #打印级别 NONE【性能最佳，适用于生产】 BASIC【适用于生产环境追踪问题】HEADERS：记录BASIC级别的基础上，记录请求和响应的headerFULL【比较适用于开发及测试环境定位问题】
+logging:
+  level: # 配置feign 请求的接口
+    cn.toma.service.HelloConsumerRemote: debug

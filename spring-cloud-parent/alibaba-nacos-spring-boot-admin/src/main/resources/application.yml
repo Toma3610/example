@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: alibaba-nacos-spring-boot-admin
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  security:
+    user:
+      name: root
+      password: root
+
+server:
+  port: 8010
+
+info.groupId: @project.groupId@
+info.artifactId: @project.artifactId@
+info.version: @project.version@
+#开启端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS

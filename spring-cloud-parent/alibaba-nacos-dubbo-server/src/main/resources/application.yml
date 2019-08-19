@@ -1,0 +1,17 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: alibaba-nacos-dubbo-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+dubbo:
+  scan:
+    base-packages: cn.toma.service  #指定 Dubbo 服务实现类的扫描基准包
+  protocol:
+    name: dubbo #Dubbo 服务暴露的协议配置，其中子属性 name 为协议名称
+    port: -1 # port 为协议端口（ -1 表示自增端口，从 20880 开始）
+  registry:
+    address: spring-cloud://localhost #Dubbo 服务注册中心配置，其中子属性 address 的值 “spring-cloud://localhost”，说明挂载到 Spring Cloud 注册中心

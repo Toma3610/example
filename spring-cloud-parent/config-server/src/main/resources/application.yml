@@ -1,0 +1,14 @@
+server:
+  port: 6001
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Toma3610/config-server
+          username: toma3610
+          password: future3610
+#          search-paths:
+      label: master
